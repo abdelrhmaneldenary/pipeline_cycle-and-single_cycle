@@ -1,0 +1,45 @@
+module instruction_memory(
+    input [15:0] pc,            // Program Counter Address
+    output reg [15:0] instruction
+);
+
+    // Memory Array: 16 words is enough for our small program
+    reg [15:0] rom [0:15];
+
+    initial begin
+        // --- THE MANDATORY TEST PROGRAM ---
+        
+        // 1. LW $1, 0($0)  -> Load 1st ID part from Data Memory [0]
+        // Binary: 1000 (Op) 000 (rs) 001 (rt) 000000 (Imm)
+        rom[0] = 16'b1000000001000000;
+
+        // 2. LW $2, 1($0)  -> Load 2nd ID part from Data Memory [1]
+        // Binary: 1000 (Op) 000 (rs) 010 (rt) 000001 (Imm)
+        rom[1] = 16'b1000000010000001;
+
+        // 3. ADD $3, $1, $2 -> Add them, result in $3
+        // Binary: 0000 (Op) 001 (rs) 010 (rt) 011 (rd) 000 (Func)
+        rom[2] = 16'b0000001010011000;
+
+        // 4. OR $4, $1, $2  -> OR them, result in $4
+        // Binary: 0000 (Op) 001 (rs) 010 (rt) 100 (rd) 101 (Func)
+        rom[3] = 16'b0000001010100101;
+
+        // 5. SW $3, 5($0)  -> Store ADD result ($3) to Data Memory [5]
+        // Binary: 1010 (Op) 000 (rs) 011 (rt) 000101 (Imm)
+        rom[4] = 16'b1010000011000101;
+
+        // 6. SW $4, 7($0)  -> Store OR result ($4) to Data Memory [7]
+        // Binary: 1010 (Op) 000 (rs) 100 (rt) 000111 (Imm)
+        rom[5] = 16'b1010000100000111;
+        
+        // 7. Loop / Stop (Safety)
+        rom[6] = 16'd0; 
+    end
+
+    always @(*) begin
+        // We only use the lower 4 bits of PC because our memory is small (16 words)
+        instruction = rom[pc[3:0]];
+    end
+
+endmodule

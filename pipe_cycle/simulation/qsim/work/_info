@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\CSE\7th_term\Arch\arch_project\pipe_cycle\simulation\qsim
+vpipelineCycle
+Z1 !s100 S5;P?O]eYJQF2niAl_2Pl2
+Z2 IXUlnbN:@^VCARIz>c4O]N2
+Z3 VLP?Y=MLMMWI=kBK@R]E762
+Z4 dD:\CSE\7th_term\Arch\arch_project\pipe_cycle\simulation\qsim
+Z5 w1766666796
+Z6 8pipelineCycle.vo
+Z7 FpipelineCycle.vo
+L0 31
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -work|work|pipelineCycle.vo|
+Z10 o-work work -O0
+Z11 npipeline@cycle
+!i10b 1
+!s85 0
+Z12 !s108 1766666799.212000
+Z13 !s107 pipelineCycle.vo|
+!s101 -O0
+vpipelineCycle_vlg_check_tst
+!i10b 1
+Z14 !s100 27hX?84JV:I@ACmQh5J6e0
+Z15 IUMFX`K^iBd>4UQLH:z6ok2
+Z16 V2UZJTi4oJ325AQ0[aZ_>h1
+R4
+Z17 w1766666795
+Z18 8Waveform.vwf.vt
+Z19 FWaveform.vwf.vt
+L0 59
+R8
+r1
+!s85 0
+31
+Z20 !s108 1766666799.353000
+Z21 !s107 Waveform.vwf.vt|
+Z22 !s90 -work|work|Waveform.vwf.vt|
+!s101 -O0
+R10
+Z23 npipeline@cycle_vlg_check_tst
+vpipelineCycle_vlg_sample_tst
+!i10b 1
+Z24 !s100 OA?HSe?FE4iYeMiA2_WTE0
+Z25 II?USf7TTXS9DUbG]k]CKo0
+Z26 VHL0clMTzG;1LW4^cHISKb1
+R4
+R17
+R18
+R19
+L0 29
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z27 npipeline@cycle_vlg_sample_tst
+vpipelineCycle_vlg_vec_tst
+!i10b 1
+Z28 !s100 D@Tjb30HM]B1K?SNJBIHG0
+Z29 IPiGBE21i84TMJzOcYonHT2
+Z30 V40YikfNQODIgo[ON6`cnI1
+R4
+R17
+R18
+R19
+Z31 L0 1311
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z32 npipeline@cycle_vlg_vec_tst

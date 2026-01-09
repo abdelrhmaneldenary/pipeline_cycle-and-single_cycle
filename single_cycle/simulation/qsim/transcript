@@ -1,0 +1,55 @@
+# do singleCycle.do 
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module singleCycle
+# 
+# Top level modules:
+# 	singleCycle
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module singleCycle_vlg_sample_tst
+# -- Compiling module singleCycle_vlg_check_tst
+# -- Compiling module singleCycle_vlg_vec_tst
+# 
+# Top level modules:
+# 	singleCycle_vlg_vec_tst
+# vsim -L cycloneiii_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate -c -voptargs=\"+acc\" -t 1ps -novopt work.singleCycle_vlg_vec_tst 
+# Loading work.singleCycle_vlg_vec_tst
+# Loading work.singleCycle
+# Loading cycloneiii_ver.cycloneiii_io_obuf
+# Loading cycloneiii_ver.cycloneiii_io_ibuf
+# Loading cycloneiii_ver.cycloneiii_lcell_comb
+# Loading altera_ver.dffeas
+# Loading work.singleCycle_vlg_sample_tst
+# Loading work.singleCycle_vlg_check_tst
+# Loading altera_ver.PRIM_GDFF_LOW
+# ** Warning: Design size of 4 instances exceeds ModelSim ALTERA recommended capacity.
+# This may because you are loading cell libraries which are not recommended with
+# the ModelSim Altera version. Expect performance to be adversely affected.
+# ERROR! Vector Mismatch for output port test_alu[0] :: @time = 30000.000 ps
+#      Expected value = 0000000000000000
+#      Real value = 0000000000000001
+# ERROR! Vector Mismatch for output port test_alu[2] :: @time = 40000.000 ps
+#      Expected value = 0000000000000000
+#      Real value = 0010001001110101
+# ERROR! Vector Mismatch for output port test_alu[4] :: @time = 40000.000 ps
+#      Expected value = 0000000000000000
+#      Real value = 0010001001110101
+# ERROR! Vector Mismatch for output port test_alu[5] :: @time = 40000.000 ps
+#      Expected value = 0000000000000000
+#      Real value = 0010001001110101
+# ERROR! Vector Mismatch for output port test_alu[6] :: @time = 40000.000 ps
+#      Expected value = 0000000000000000
+#      Real value = 0010001001110101
+# ERROR! Vector Mismatch for output port test_alu[9] :: @time = 40000.000 ps
+#      Expected value = 0000000000000000
+#      Real value = 0010001001110101
+# ERROR! Vector Mismatch for output port test_alu[13] :: @time = 40000.000 ps
+#      Expected value = 0000000000000000
+#      Real value = 0010001001110101
+# ERROR! Vector Mismatch for output port test_alu[1] :: @time = 50000.000 ps
+#      Expected value = 0000000000000000
+#      Real value = 0010001001110011
+#           8 mismatched vectors : Simulation failed !
+# ** Note: $finish    : Waveform.vwf.vt(1011)
+#    Time: 1 us  Iteration: 0  Instance: /singleCycle_vlg_vec_tst/tb_out

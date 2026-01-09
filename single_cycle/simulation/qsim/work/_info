@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\CSE\7th_term\Arch\arch_project\single_cycle\simulation\qsim
+vsingleCycle
+Z1 I6j]fzV=oJ@cd7=YNnTh2b3
+Z2 VIz3`FPfBal@WY2CfFnW=k3
+Z3 dD:\CSE\7th_term\Arch\arch_project\single_cycle\simulation\qsim
+Z4 w1766596368
+Z5 8singleCycle.vo
+Z6 FsingleCycle.vo
+L0 31
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 !s90 -work|work|singleCycle.vo|
+Z9 o-work work -O0
+Z10 nsingle@cycle
+!i10b 1
+Z11 !s100 `VPE]ga7G`D=cNSKoZL?<1
+!s85 0
+Z12 !s108 1766596369.209000
+Z13 !s107 singleCycle.vo|
+!s101 -O0
+vsingleCycle_vlg_check_tst
+!i10b 1
+Z14 !s100 jc0`YTiPXTe84;4LEVXz_1
+Z15 IA_@b7=S1Vb0[lTKXEVOma1
+Z16 V=MM6Lh:iRdP@T3J=[:^CZ0
+R3
+Z17 w1766596367
+Z18 8Waveform.vwf.vt
+Z19 FWaveform.vwf.vt
+L0 59
+R7
+r1
+!s85 0
+31
+Z20 !s108 1766596369.570000
+Z21 !s107 Waveform.vwf.vt|
+Z22 !s90 -work|work|Waveform.vwf.vt|
+!s101 -O0
+R9
+Z23 nsingle@cycle_vlg_check_tst
+vsingleCycle_vlg_sample_tst
+!i10b 1
+Z24 !s100 fc=DbJOC3VR_?=B?];Yd12
+Z25 IKeKZbWCaezF7U@=QQZ;bO1
+Z26 VgXSnoKd:laj]bzEgmTS1n3
+R3
+R17
+R18
+R19
+L0 29
+R7
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R9
+Z27 nsingle@cycle_vlg_sample_tst
+vsingleCycle_vlg_vec_tst
+!i10b 1
+Z28 !s100 Xa3Bg2>1ioP2:zT=nJJNg3
+Z29 I43`MEKM3TNBg62>Ld3ZT20
+Z30 VL=W145LId5aUzk_YQS2mV1
+R3
+R17
+R18
+R19
+Z31 L0 1015
+R7
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R9
+Z32 nsingle@cycle_vlg_vec_tst

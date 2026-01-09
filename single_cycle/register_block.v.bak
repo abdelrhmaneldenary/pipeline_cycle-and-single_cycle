@@ -1,0 +1,35 @@
+module register_block(
+    input clk,                  // System Clock
+    input rst,                  // Reset signal
+    input reg_write,            // Control signal: 1 = Write, 0 = Read only
+    input [2:0] read_reg1,      // Address of Source Register 1 (rs)
+    input [2:0] read_reg2,      // Address of Source Register 2 (rt)
+    input [2:0] write_reg,      // Address of Destination Register (rd)
+    input [15:0] write_data,    // Data to write into the register
+    output [15:0] read_data1,   // Data output 1
+    output [15:0] read_data2    // Data output 2
+);
+
+    // 8 Registers, each 16 bits wide
+    reg [15:0] registers [0:7];
+    integer i;
+
+    // Reading is Combinational (Instant)
+    // Note: Register 0 is hardwired to 0 in standard MIPS.
+    assign read_data1 = (read_reg1 == 3'b000) ? 16'd0 : registers[read_reg1];
+    assign read_data2 = (read_reg2 == 3'b000) ? 16'd0 : registers[read_reg2];
+
+    // Writing is Sequential (Happens on Clock Edge)
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            // Reset all registers to 0
+            for (i = 0; i < 8; i = i + 1)
+                registers[i] <= 16'd0;
+        end
+        else if (reg_write && (write_reg != 3'b000)) begin
+            // Write only if RegWrite is 1 AND we are not trying to write to $0
+            registers[write_reg] <= write_data;
+        end
+    end
+
+endmodule

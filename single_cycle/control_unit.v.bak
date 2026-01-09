@@ -1,0 +1,61 @@
+module control_unit(
+    input [3:0] opcode,      // The first 4 bits of the instruction
+    output reg reg_dst,      // 0=rt (Load), 1=rd (R-Type)
+    output reg reg_write,    // 1=Write to register file
+    output reg alu_src,      // 0=Read from Reg, 1=Read Immediate (LW/SW)
+    output reg mem_read,     // 1=Read from Data Memory
+    output reg mem_write,    // 1=Write to Data Memory
+    output reg mem_to_reg,   // 0=Result from ALU, 1=Result from Memory
+    output reg [1:0] alu_op  // 00=LW/SW, 10=R-Type
+);
+
+    always @(*)
+    begin
+        // Default values (Safety first: turn everything off)
+        reg_dst = 0; reg_write = 0; alu_src = 0;
+        mem_read = 0; mem_write = 0; mem_to_reg = 0;
+        alu_op = 2'b00;
+
+        case(opcode)
+            // ----------------------------------------------------
+            // 1. R-Type (ADD, OR) - Opcode 0000
+            // ----------------------------------------------------
+            4'b0000: begin
+                reg_dst = 1;      // Destination is 'rd'
+                reg_write = 1;    // We are writing a result
+                alu_src = 0;      // operand B comes from Register
+                mem_read = 0;
+                mem_write = 0;
+                mem_to_reg = 0;   // Data comes from ALU, not Mem
+                alu_op = 2'b10;   // Tell ALU Control to look at Func Code
+            end
+
+            // ----------------------------------------------------
+            // 2. Load Word (LW) - Opcode 1000
+            // ----------------------------------------------------
+            4'b1000: begin
+                reg_dst = 0;      // Destination is 'rt'
+                reg_write = 1;    // We are writing the loaded data
+                alu_src = 1;      // operand B is the Immediate (Address)
+                mem_read = 1;     // Read from Memory
+                mem_write = 0;
+                mem_to_reg = 1;   // Data comes from Memory, not ALU
+                alu_op = 2'b00;   // Tell ALU Control to add (Address Calc)
+            end
+
+            // ----------------------------------------------------
+            // 3. Store Word (SW) - Opcode 1010
+            // ----------------------------------------------------
+            4'b1010: begin
+                reg_dst = 0;      // Don't care
+                reg_write = 0;    // We are NOT writing to register
+                alu_src = 1;      // operand B is the Immediate (Address)
+                mem_read = 0;
+                mem_write = 1;    // Write to Memory
+                mem_to_reg = 0;   // Don't care
+                alu_op = 2'b00;   // Tell ALU Control to add (Address Calc)
+            end
+        endcase
+    end
+
+endmodule

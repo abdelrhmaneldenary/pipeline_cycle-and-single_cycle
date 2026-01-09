@@ -1,0 +1,41 @@
+module data_memory(
+    input clk,
+    input mem_write,           // Control Signal: 1 = Write, 0 = Read
+    input [15:0] address,      // Address from ALU
+    input [15:0] write_data,   // Data to store (from Register File)
+    output [15:0] read_data    // Data read from memory
+);
+
+    // Memory Array: 256 words
+    reg [15:0] ram [0:255];
+
+    initial begin
+        // --- STUDENT ID INITIALIZATION ---
+        // ID: 120220253
+        
+        // Address 0x00: Last 4 digits (0253)
+        ram[0] = 16'h0253; 
+        
+        // Address 0x01: Middle digits (2022)
+        ram[1] = 16'h2022; 
+        
+        // Initialize other slots to 0 to avoid garbage data
+        ram[2] = 16'h0000;
+        ram[3] = 16'h0000;
+        ram[4] = 16'h0000;
+        ram[5] = 16'h0000;
+        ram[6] = 16'h0000;
+        ram[7] = 16'h0000;
+    end
+
+    // Reading is Combinational (Instant)
+    assign read_data = ram[address[7:0]];
+
+    // Writing is Sequential (Clocked)
+    always @(posedge clk) begin
+        if (mem_write) begin
+            ram[address[7:0]] <= write_data;
+        end
+    end
+
+endmodule

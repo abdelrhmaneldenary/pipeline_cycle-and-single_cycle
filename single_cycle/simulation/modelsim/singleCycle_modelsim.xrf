@@ -1,0 +1,17 @@
+vendor_name = ModelSim
+source_file = 1, D:/CSE/7th_term/Arch/arch_project/single_cycle/alu.v
+source_file = 1, D:/CSE/7th_term/Arch/arch_project/single_cycle/singleCycle.bdf
+source_file = 1, D:/CSE/7th_term/Arch/arch_project/single_cycle/alu_control.v
+source_file = 1, D:/CSE/7th_term/Arch/arch_project/single_cycle/register_block.v
+source_file = 1, D:/CSE/7th_term/Arch/arch_project/single_cycle/instruction_memory.v
+source_file = 1, D:/CSE/7th_term/Arch/arch_project/single_cycle/data_memory.v
+source_file = 1, D:/CSE/7th_term/Arch/arch_project/single_cycle/control_unit.v
+source_file = 1, D:/CSE/7th_term/Arch/arch_project/single_cycle/program_counter.v
+source_file = 1, D:/CSE/7th_term/Arch/arch_project/single_cycle/sign_extend.v
+source_file = 1, D:/CSE/7th_term/Arch/arch_project/single_cycle/adder.v
+source_file = 1, D:/CSE/7th_term/Arch/arch_project/single_cycle/mux16.v
+source_file = 1, D:/CSE/7th_term/Arch/arch_project/single_cycle/mux3.v
+source_file = 1, D:/CSE/7th_term/Arch/arch_project/single_cycle/db/singleCycle.cbx.xml
+design_name = singleCycle
+instance = comp, \clk~input\, clk~input, singleCycle, 1
+instance = comp, \rst~input\, rst~input, singleCycle, 1

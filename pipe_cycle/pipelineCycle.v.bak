@@ -1,0 +1,241 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// PROGRAM		"Quartus II 64-Bit"
+// VERSION		"Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
+// CREATED		"Wed Dec 24 17:13:49 2025"
+
+module pipelineCycle(
+	rst,
+	clk,
+	alu_result,
+	instruction,
+	pc,
+	write_data
+);
+
+
+input wire	rst;
+input wire	clk;
+output wire	[15:0] alu_result;
+output wire	[15:0] instruction;
+output wire	[15:0] pc;
+output wire	[15:0] write_data;
+
+wire	[15:0] adder;
+wire	[3:0] alu_control_16;
+wire	[1:0] alu_oup;
+wire	[1:0] alu_out_ex;
+wire	[15:0] alu_out_ex_mem;
+wire	[15:0] alu_result_ALTERA_SYNTHESIZED;
+wire	[15:0] d1_out;
+wire	[15:0] d2_out;
+wire	[15:0] d2_out_ex_mem;
+wire	[15:0] imm_out_id_ex;
+wire	[15:0] inst_out;
+wire	[15:0] instruction_ALTERA_SYNTHESIZED;
+wire	[15:0] last_mux_out;
+wire	[15:0] mem_out_data_mem;
+wire	[15:0] mem_we_out;
+wire	[15:0] mem_we_out_mdata;
+wire	[15:0] mux_16_ex;
+wire	[2:0] mux_out;
+wire	[15:0] pc_ALTERA_SYNTHESIZED;
+wire	[15:0] read_data1;
+wire	[15:0] read_data2;
+wire	[2:0] reg_write_last_mux;
+wire	[15:0] sign_extend;
+wire	[2:0] wreg_out_ex_mem;
+wire	[2:0] wreg_out_id_ex;
+wire	SYNTHESIZED_WIRE_0;
+wire	SYNTHESIZED_WIRE_1;
+wire	SYNTHESIZED_WIRE_2;
+wire	SYNTHESIZED_WIRE_3;
+wire	SYNTHESIZED_WIRE_4;
+wire	SYNTHESIZED_WIRE_5;
+wire	SYNTHESIZED_WIRE_6;
+wire	SYNTHESIZED_WIRE_7;
+wire	SYNTHESIZED_WIRE_8;
+wire	SYNTHESIZED_WIRE_9;
+wire	SYNTHESIZED_WIRE_10;
+wire	SYNTHESIZED_WIRE_11;
+wire	SYNTHESIZED_WIRE_12;
+wire	SYNTHESIZED_WIRE_13;
+wire	SYNTHESIZED_WIRE_14;
+wire	SYNTHESIZED_WIRE_15;
+wire	SYNTHESIZED_WIRE_16;
+
+
+
+
+
+program_counter	b2v_inst(
+	.clk(clk),
+	.rst(rst),
+	.pc_next(adder),
+	.pc(pc_ALTERA_SYNTHESIZED));
+
+
+adder	b2v_inst1(
+	.b(pc_ALTERA_SYNTHESIZED),
+	.y(adder));
+
+
+mux16	b2v_inst10(
+	.sel(SYNTHESIZED_WIRE_0),
+	.a(d2_out),
+	.b(imm_out_id_ex),
+	.y(mux_16_ex));
+
+
+alu	b2v_inst11(
+	.a(d1_out),
+	.alu_cntrl(alu_control_16),
+	.b(mux_16_ex),
+	
+	.result(alu_result_ALTERA_SYNTHESIZED));
+
+
+EX_MEM	b2v_inst12(
+	.clk(clk),
+	.rst(rst),
+	.rwrite_in(SYNTHESIZED_WIRE_1),
+	.mreg_in(SYNTHESIZED_WIRE_2),
+	.mread_in(SYNTHESIZED_WIRE_3),
+	.mwrite_in(SYNTHESIZED_WIRE_4),
+	.alu_in(alu_result_ALTERA_SYNTHESIZED),
+	.d2_in(d2_out),
+	.wreg_in(wreg_out_id_ex),
+	.rwrite_out(SYNTHESIZED_WIRE_7),
+	.mreg_out(SYNTHESIZED_WIRE_8),
+	.mread_out(SYNTHESIZED_WIRE_6),
+	.mwrite_out(SYNTHESIZED_WIRE_5),
+	.alu_out(alu_out_ex_mem),
+	.d2_out(d2_out_ex_mem),
+	.wreg_out(wreg_out_ex_mem));
+
+
+data_memory	b2v_inst15(
+	.clk(clk),
+	.mem_write(SYNTHESIZED_WIRE_5),
+	.mem_read(SYNTHESIZED_WIRE_6),
+	.address(alu_out_ex_mem),
+	.write_data(d2_out_ex_mem),
+	.read_data(mem_out_data_mem));
+
+
+MEM_WB	b2v_inst16(
+	.clk(clk),
+	.rst(rst),
+	.rwrite_in(SYNTHESIZED_WIRE_7),
+	.mreg_in(SYNTHESIZED_WIRE_8),
+	.alu_in(alu_out_ex_mem),
+	.mdata_in(mem_out_data_mem),
+	.wreg_in(wreg_out_ex_mem),
+	.rwrite_out(SYNTHESIZED_WIRE_10),
+	.mreg_out(SYNTHESIZED_WIRE_9),
+	.alu_out(mem_we_out),
+	.mdata_out(mem_we_out_mdata),
+	.wreg_out(reg_write_last_mux));
+
+
+mux16	b2v_inst17(
+	.sel(SYNTHESIZED_WIRE_9),
+	.a(mem_we_out),
+	.b(mem_we_out_mdata),
+	.y(last_mux_out));
+
+
+instruction_memory	b2v_inst2(
+	.pc(pc_ALTERA_SYNTHESIZED),
+	.instruction(instruction_ALTERA_SYNTHESIZED));
+
+
+IF_ID	b2v_inst3(
+	.clk(clk),
+	.rst(rst),
+	.inst_in(instruction_ALTERA_SYNTHESIZED),
+	.inst_out(inst_out));
+
+
+control_unit	b2v_inst4(
+	.opcode(inst_out[15:12]),
+	.reg_dst(SYNTHESIZED_WIRE_11),
+	.reg_write(SYNTHESIZED_WIRE_12),
+	.alu_src(SYNTHESIZED_WIRE_16),
+	.mem_write(SYNTHESIZED_WIRE_15),
+	.mem_read(SYNTHESIZED_WIRE_14),
+	.mem_to_reg(SYNTHESIZED_WIRE_13),
+	.alu_op(alu_oup));
+
+
+register_block	b2v_inst5(
+	.clk(clk),
+	.rst(rst),
+	.reg_write(SYNTHESIZED_WIRE_10),
+	.read_reg1(inst_out[11:9]),
+	.read_reg2(inst_out[8:6]),
+	.write_data(last_mux_out),
+	.write_reg(reg_write_last_mux),
+	.read_data1(read_data1),
+	.read_data2(read_data2));
+
+
+mux3	b2v_inst6(
+	.sel(SYNTHESIZED_WIRE_11),
+	.a(inst_out[8:6]),
+	.b(inst_out[5:3]),
+	.y(mux_out));
+
+
+sign_extend	b2v_inst7(
+	.in(inst_out[5:0]),
+	.out(sign_extend));
+
+
+ID_EX	b2v_inst8(
+	.clk(clk),
+	.rst(rst),
+	.rwrite_in(SYNTHESIZED_WIRE_12),
+	.mreg_in(SYNTHESIZED_WIRE_13),
+	.mread_in(SYNTHESIZED_WIRE_14),
+	.mwrite_in(SYNTHESIZED_WIRE_15),
+	.asrc_in(SYNTHESIZED_WIRE_16),
+	.aluop_in(alu_oup),
+	.d1_in(read_data1),
+	.d2_in(read_data2),
+	.imm_in(sign_extend),
+	.wreg_in(mux_out),
+	.rwrite_out(SYNTHESIZED_WIRE_1),
+	.mreg_out(SYNTHESIZED_WIRE_2),
+	.mread_out(SYNTHESIZED_WIRE_3),
+	.mwrite_out(SYNTHESIZED_WIRE_4),
+	.asrc_out(SYNTHESIZED_WIRE_0),
+	.aluop_out(alu_out_ex),
+	.d1_out(d1_out),
+	.d2_out(d2_out),
+	.imm_out(imm_out_id_ex),
+	.wreg_out(wreg_out_id_ex));
+
+
+alu_control	b2v_inst9(
+	.ALUOp(alu_out_ex),
+	.FuncCode(imm_out_id_ex[2:0]),
+	.ALU_Cntrl(alu_control_16));
+
+assign	alu_result = alu_result_ALTERA_SYNTHESIZED;
+assign	instruction = instruction_ALTERA_SYNTHESIZED;
+assign	pc = pc_ALTERA_SYNTHESIZED;
+
+endmodule
